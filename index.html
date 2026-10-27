@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل فعاليات الجامعة - الجامعة الأكاديمية</title>
+    <!-- Google Fonts: Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 RTL CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header & Navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+            <div class="container">
+                <a class="navbar-brand text-warning" href="index.html">
+                    <i class="bi bi-calendar-event-fill me-2"></i>فعاليات الجامعة
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" href="index.html">الرئيسية</a></li>
+<li class="nav-item"><a class="nav-link " href="events.html">كل الفعاليات</a></li>
+<li class="nav-item"><a class="nav-link " href="about.html">عن الدليل</a></li>
+<li class="nav-item"><a class="nav-link " href="contact.html">اتصل بنا</a></li>
+
+                    </ul>
+                    <div class="d-flex align-items-center gap-2">
+                        <!-- زر تبديل الوضع المظلم Dark Mode -->
+                        <button class="btn btn-outline-light btn-sm" onclick="toggleDarkMode()" title="تغيير النمط">
+                            <i id="darkModeIcon" class="bi bi-moon-fill"></i>
+                        </button>
+                        <a class="btn btn-outline-warning btn-sm" href="events.html">
+                            <i class="bi bi-search"></i> بحث
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="hero-section text-center">
+            <div class="container">
+                <h1 class="display-4 fw-bold mb-3">مرحباً بك في دليل فعاليات الجامعة</h1>
+                <p class="lead mb-4">بوابة الطالب الأولى لمعرفة ومتابعة كافة الأنشطة الثقافية، الرياضية، والعلمية في الحرم الجامعي.</p>
+                <a class="btn btn-warning btn-lg fw-bold text-dark px-4" href="events.html">استكشف الفعاليات الآن</a>
+            </div>
+        </div>
+
+        <div class="container mb-5">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h3 class="fw-bold mb-4">تصفح حسب التصنيف</h3>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="card bg-primary text-white p-3 shadow-sm" style="cursor:pointer;" onclick="filterByCategory('ثقافي')">
+                        <i class="bi bi-book display-5 mb-2"></i>
+                        <h5>ثقافة</h5>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="card bg-success text-white p-3 shadow-sm" style="cursor:pointer;" onclick="filterByCategory('رياضي')">
+                        <i class="bi bi-trophy display-5 mb-2"></i>
+                        <h5>رياضة</h5>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="card bg-danger text-white p-3 shadow-sm" style="cursor:pointer;" onclick="filterByCategory('موسيقى')">
+                        <i class="bi bi-music-note-beamed display-5 mb-2"></i>
+                        <h5>موسيقى</h5>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="card bg-warning text-dark p-3 shadow-sm" style="cursor:pointer;" onclick="filterByCategory('عائلي')">
+                        <i class="bi bi-people display-5 mb-2"></i>
+                        <h5>عائلي</h5>
+                    </div>
+                </div>
+            </div>
+
+            <!-- فعاليات بارزة هذا الأسبوع -->
+            <div class="mb-5">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="fw-bold m-0"><i class="bi bi-star-fill text-warning me-2"></i>فعاليات بارزة هذا الأسبوع</h3>
+                    <a href="events.html" class="btn btn-link text-decoration-none">عرض الكل &larr;</a>
+                </div>
+                <div class="row g-4" id="featured-events-container"></div>
+            </div>
+
+            <!-- أحدث الفعاليات -->
+            <div>
+                <h3 class="fw-bold mb-4"><i class="bi bi-clock-history text-primary me-2"></i>أحدث الفعاليات</h3>
+                <div class="row g-4" id="latest-events-container"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- زر العودة للأعلى (Scroll-to-top Button) -->
+    <button id="scrollTopBtn" class="btn btn-warning shadow" onclick="scrollToTop()" title="العودة للأعلى">
+        <i class="bi bi-arrow-up text-dark fw-bold"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0 small">&copy; 2026 دليل فعاليات الجامعة. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
