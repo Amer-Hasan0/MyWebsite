@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d6efd" />
+      <stop offset="100%" stop-color="#0a58ca" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bgGradient)"/>
+  <g fill="#ffffff" text-anchor="middle" font-family="'Cairo', sans-serif">
+    <circle cx="200" cy="110" r="45" fill="rgba(255, 255, 255, 0.2)"/>
+    <path d="M185 95 h30 v30 h-30 z" fill="none" stroke="#ffc107" stroke-width="4"/>
+    <circle cx="200" cy="110" r="10" fill="#ffc107"/>
+    <text x="200" y="190" font-size="22" font-weight="bold">دليل فعاليات الجامعة</text>
+    <text x="200" y="225" font-size="14" fill="#e0e0e0">صورة توضيحية للفعاليات</text>
+  </g>
+</svg>

@@ -1,10 +1,11 @@
 // [Database] مصفوفة البيانات الوهمية للفعاليات
 const eventsData = [
-    { id: 1, title: "مهرجان الكتاب السنوي", category: "ثقافي", date: "2026-06-10", location: "قاعة المؤتمرات", image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=600&q=80", description: "معرض يضم أحدث الإصدارات الثقافية والعلمية مع جلسات توقيع كتب واستضافات لكتّاب بارزين.", featured: true },
-    { id: 2, title: "بطولة كرة القدم للجامعة", category: "رياضي", date: "2026-06-12", location: "الصالة الرياضية", image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80", description: "نهائي بطولة كرة القدم بين كليات الجامعة بمشاركة حماسية وتنظيم طلابي رفيع المستوى.", featured: true },
-    { id: 3, title: "أمسية الموسيقى الكلاسيكية", category: "موسيقى", date: "2026-06-15", location: "المسرح الكبير", image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80", description: "حفل موسيقي تعزفه أوركيسترا الطلاب لعزف مقطوعات خالدة وألحان شرقية وغربية.", featured: true },
-    { id: 4, title: "اليوم العائلي الترفيهي", category: "عائلي", date: "2026-06-18", location: "الحديقة المركزية للحرم", image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=600&q=80", description: "يوم ترفيهي مفتوح لعائلات الطلاب وأعضاء هيئة التدريس يضم ألعاباً وأنشطة متنوعة.", featured: false },
-    { id: 5, title: "معرض الابتكار التكنولوجي", category: "ثقافي", date: "2026-06-20", location: "قاعة المؤتمرات", image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80", description: "استعراض مشاريع تخرج طلاب هندسة الحاسب وتقنية المعلومات وأحدث الابتكارات البرمجية.", featured: false }
+    { id: 1, title: "مهرجان الكتاب السنوي", category: "ثقافي", date: "2026-06-10", location: "قاعة المؤتمرات", image: "assets/img/library.avif", description: "معرض يضم أحدث الإصدارات الثقافية والعلمية مع جلسات توقيع كتب واستضافات لكتّاب بارزين.", featured: true },
+    { id: 2, title: "بطولة كرة القدم للجامعة", category: "رياضي", date: "2026-06-12", location: "الصالة الرياضية", image: "assets/img/sport.avif", description: "نهائي بطولة كرة القدم بين كليات الجامعة بمشاركة حماسية وتنظيم طلابي رفيع المستوى.", featured: true },
+    { id: 3, title: "دروس اسلامية دينية", category: "ديني", date: "2026-06-15", location: "المسجد المركزي للحرم", image: "assets/img/mouseq.jpeg", description: "محاضرة علمية فقهية في الاختلاط في الجامعات واحكامه و تبعاته ", featured: true },
+    // { id: 4, title: "اليوم العائلي الترفيهي", category: "عائلي", date: "2026-06-18", location: "الحديقة المركزية للحرم", image: "assets/img/family.jpg", description: "يوم ترفيهي مفتوح لعائلات الطلاب وأعضاء هيئة التدريس يضم ألعاباً وأنشطة متنوعة.", featured: false },
+    // { id: 5, title: "معرض الابتكار التكنولوجي", category: "ثقافي", date: "2026-06-20", location: "قاعة المؤتمرات", image: "assets/img/tech.jpg", description: "استعراض مشاريع تخرج طلاب هندسة الحاسب وتقنية المعلومات وأحدث الابتكارات البرمجية.", featured: false },
+    { id: 6, title: "المهرجان المسرحي والسينمائي", category: "ثقافي", date: "2026-06-25", location: "المسرح الكبير", image: "assets/img/cinama.jpeg", description: "عروض مسرحية وأفلام وثائقية يقدمها طلبة الجامعة على خشبة المسرح الكبير بحضور نخبة من الأكاديميين.", featured: false }
 ];
 
 // [Render Home Events] عرض الفعاليات البارزة والأحدث في الصفحة الرئيسية
@@ -29,7 +30,9 @@ function renderHomeEvents() {
 
     const latestContainer = document.getElementById('latest-events-container');
     if (latestContainer) {
-        latestContainer.innerHTML = eventsData.slice(0, 3).map(e => `
+        // عرض أحدث 3 فعاليات إضافية لإثراء الصفحة الرئيسية
+        const latestList = eventsData.slice(-3).reverse();
+        latestContainer.innerHTML = latestList.map(e => `
             <div class="col-md-4">
                 <div class="card h-100 shadow-sm">
                     <img src="${e.image}" class="card-img-top" alt="${e.title}">
@@ -135,6 +138,12 @@ function loadEventDetail() {
         </div>
     `;
 
+    // Update booking modal title with event title if present
+    const bookingTitleEl = document.getElementById('bookingModalTitle');
+    if (bookingTitleEl) {
+        bookingTitleEl.textContent = `حجز مقعد: ${e.title}`;
+    }
+
     // Related events
     const relatedContainer = document.getElementById('related-events-container');
     if (relatedContainer) {
@@ -161,7 +170,7 @@ function submitBooking(event) {
     document.getElementById('bookingSuccessAlert').classList.remove('d-none');
     setTimeout(() => {
         const modalEl = document.getElementById('bookingModal');
-        const modal = bootstrap.Modal.getInstance(modalEl);
+        const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
         if (modal) modal.hide();
         document.getElementById('bookingForm').reset();
         document.getElementById('bookingSuccessAlert').classList.add('d-none');
@@ -190,19 +199,21 @@ function handleContactSubmit(event) {
 
 // [Dark Mode Toggle]
 function toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.toggle('dark-mode');
     const icon = document.getElementById('darkModeIcon');
-    if (document.body.classList.contains('dark-mode')) {
+    if (isDark) {
+        document.documentElement.setAttribute('data-bs-theme', 'dark');
         if (icon) icon.className = "bi bi-sun-fill text-warning";
         localStorage.setItem('theme', 'dark');
     } else {
+        document.documentElement.setAttribute('data-bs-theme', 'light');
         if (icon) icon.className = "bi bi-moon-fill";
         localStorage.setItem('theme', 'light');
     }
 }
 
 // [Scroll-to-top Functionality]
-window.onscroll = function() {
+window.onscroll = function () {
     const btn = document.getElementById('scrollTopBtn');
     if (btn) {
         if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
@@ -221,6 +232,7 @@ function scrollToTop() {
 document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark-mode');
+        document.documentElement.setAttribute('data-bs-theme', 'dark');
         const icon = document.getElementById('darkModeIcon');
         if (icon) icon.className = "bi bi-sun-fill text-warning";
     }
@@ -229,7 +241,9 @@ document.addEventListener('DOMContentLoaded', () => {
     loadEventDetail();
 
     if (document.getElementById('all-events-container')) {
-        const savedCategory = localStorage.getItem('preferredCategory');
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryParam = urlParams.get('category');
+        const savedCategory = categoryParam || localStorage.getItem('preferredCategory');
         if (savedCategory) {
             const catFilter = document.getElementById('categoryFilter');
             if (catFilter) catFilter.value = savedCategory;
